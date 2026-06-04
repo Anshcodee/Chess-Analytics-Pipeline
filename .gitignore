@@ -1,0 +1,44 @@
+# Ignore the entire data directory and all its subfolders
+data/
+
+# Ignore massive data files just in case they are saved outside the data folder
+*.pgn
+*.zst
+*.parquet
+*.csv
+*.jsonl
+
+# PySpark / Hive default local directories and logs
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Never commit environment variables or credentials
+.env
+.env.*
+*.env
+config/db_config.json
+credentials.json
+secrets.json
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+.venv/
+env/
+.env_python/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Mac / Windows system files
+.DS_Store
+Thumbs.db
+
+# VS Code / PyCharm settings
+.vscode/
+.idea/
+*.swp

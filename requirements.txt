@@ -1,0 +1,18 @@
+# Safely decompressing Lichess .zst files
+zstandard
+
+# Parsing complex PGN game trees and metadata
+chess
+
+# DataFrame structuring and Parquet engine
+pandas
+pyarrow
+
+# Distributed processing
+pyspark
+
+# ORM and Database Toolkit for standardizing the connection
+SQLAlchemy
+
+# MySQL driver used by SQLAlchemy
+pymysql
