@@ -2,25 +2,36 @@ import os
 import glob
 import pandas as pd
 from sqlalchemy import create_engine
+from dotenv import load_dotenv
+from urllib.parse import quote_plus #Add this if the db password 
+
+# load credentials from the .env file into the system environment
+load_dotenv()
 
 def load_to_mysql():
     print("connecting to mysql...")
     
-    # swap these out with your local workbench creds
-    db_user = "root"
-    db_password = "your_actual_password"
-    db_host = "localhost"
-    db_name = "chess_schema" 
+    # pull the credentials securely from the environment
+    db_user = os.getenv("DB_USER")
+    db_password = os.getenv("DB_PASSWORD")
+    db_host = os.getenv("DB_HOST")
+    db_name = os.getenv("DB_NAME")
     
-    # create the sqlalchemy engine to talk to mysql
-    engine = create_engine(f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}")
+    # fail-safe: check if the .env loaded correctly
+    if not db_password:
+        raise ValueError("database password not found! check your .env file.")
+    
+    # URL-encode the password so special characters (like @ or #) don't break the connection string
+    safe_password = quote_plus(db_password)
+    
+    # create the sqlalchemy engine using the safe password
+    engine = create_engine(f"mysql+pymysql://{db_user}:{safe_password}@{db_host}/{db_name}")
 
-    # dynamically find the processed data folder so this doesn't break if we move it
+    # dynamically find the processed data folder
     base_dir = os.path.dirname(os.path.abspath(__file__))
     processed_dir = os.path.join(base_dir, '..', '..', 'data', '03_processed')
 
-    # order matters here! dimensions need to go in before the fact table 
-    # so the foreign keys don't freak out
+    # order matters here, dimensions need to go in before the fact table 
     tables = [
         "dim_player",
         "dim_opening",
