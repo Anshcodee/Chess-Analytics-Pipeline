@@ -161,7 +161,7 @@ def export_chunks(games_data, moves_data, games_dir, moves_dir, chunk_index):
 
 if __name__ == "__main__":
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    ZST_FILE_PATH = os.path.join(BASE_DIR, '..', '..', 'data', '01_raw', 'lichess_db_standard_rated_2014-01.pgn.zst')
+    ZST_FILE_PATH = os.path.join(BASE_DIR, '..', '..', 'data', '01_raw', 'lichess_db_standard_rated_2015-05.pgn.zst')
     OUTPUT_DIRECTORY = os.path.join(BASE_DIR, '..', '..', 'data', '02_staged')
     
     # 100k chunk size is perfect for pure-Python parsing
