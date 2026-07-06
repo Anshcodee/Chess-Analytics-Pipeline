@@ -35,17 +35,20 @@ chess-analytics-pipeline/
 ├── notebooks/                  # Local notebooks for data auditing and testing 
 │   ├── audit_processed_data.ipynb 
 │   └── audit_staged_data.ipynb 
+│   └── model_testing.ipynb 
 │ 
 ├── src/                        # Main source code split by pipeline step 
-│   ├── extract/        
-│   │   ├── parse_lichess.py    # Parsers to clean and split raw logs (1st iteration) 
-│   │   ├── parse_lichess2.py   #(2nd iteration) 
-│   │   └── parse_lichess3.py   #(Final iteration) 
-│   ├── transform/                
-│   │   └── spark_pipeline.py   # PySpark job for engineering & ID hashing 
-│   └── load/                  
-│       ├── load_to_mysql.py    # Loads processed Parquet files into MySQL 
-│       └── schema.sql          # Target DDL schema definitions 
+│   ├── pipeline/        
+│     ├── extract/        
+│     │   ├── parse_lichess.py    # Parsers to clean and split raw logs (1st iteration) 
+│     │   ├── parse_lichess2.py   #(2nd iteration) 
+│     │   └── parse_lichess3.py   #(Final iteration) 
+│     ├── transform/                
+│     │   └── spark_pipeline.py   # PySpark job for engineering & ID hashing 
+│     └── load/                  
+│         ├── load_to_mysql.py    # Loads processed Parquet files into MySQL 
+│         └── schema.sql          # Target DDL schema definitions 
+│   ├── modeling/        
 │ 
 ├── .env                        # Local database credentials (ignored by Git) 
 ├── .gitignore                   
