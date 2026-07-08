@@ -36,6 +36,8 @@ chess-analytics-pipeline/
 │   ├── audit_processed_data.ipynb 
 │   └── audit_staged_data.ipynb 
 │   └── model_testing.ipynb 
+│
+├── saved_models/                        # Has the models used
 │ 
 ├── src/                        # Main source code split by pipeline step 
 │   ├── pipeline/        
@@ -49,6 +51,7 @@ chess-analytics-pipeline/
 │         ├── load_to_mysql.py    # Loads processed Parquet files into MySQL 
 │         └── schema.sql          # Target DDL schema definitions 
 │   ├── modeling/        
+│     │   ├── predict.py    # Uses the model from saved_models to predict chess games
 │ 
 ├── .env                        # Local database credentials (ignored by Git) 
 ├── .gitignore                   
